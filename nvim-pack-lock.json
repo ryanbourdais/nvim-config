@@ -8,6 +8,14 @@
       "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
       "src": "https://github.com/saghen/blink.lib"
     },
+    "cyberdream.nvim": {
+      "rev": "39e1fda12c0704e01029b286a4c7e77e33a0c5cd",
+      "src": "https://github.com/scottmckendry/cyberdream.nvim"
+    },
+    "nord.nvim": {
+      "rev": "80c1e5321505aeb22b7a9f23eb82f1e193c12470",
+      "src": "https://github.com/shaunsingh/nord.nvim"
+    },
     "nvim-treesitter": {
       "rev": "e82ef6ae2c3eeb96c6916b29917f96bf630b2cdb",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -15,6 +23,10 @@
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "onenord.nvim": {
+      "rev": "5240bfb79bcab7e03508626c5283cfc417b79169",
+      "src": "https://github.com/rmehri01/onenord.nvim"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",

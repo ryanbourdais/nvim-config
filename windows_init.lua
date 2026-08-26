@@ -39,12 +39,18 @@ vim.filetype.add({
 })
 
 vim.pack.add({
+    -- plugins
     "https://github.com/saghen/blink.lib",
     "https://github.com/saghen/blink.cmp",
     "https://github.com/stevearc/oil.nvim",
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/folke/snacks.nvim",
     "https://github.com/benomahony/youtube.nvim",
+
+    -- themes
+    "https://github.com/rmehri01/onenord.nvim",
+    "https://github.com/shaunsingh/nord.nvim",
+    "https://github.com/scottmckendry/cyberdream.nvim",
 })
 
 local cmp = require("blink.cmp")
@@ -205,3 +211,63 @@ vim.keymap.set("n", "<leader>ms", music_layout, { desc = "Project layout with Sp
 
 vim.keymap.set("n", "<leader>wl", project_layout, { desc = "Project window layout" })
 vim.keymap.set("n", "<leader>yt", youtube_layout, { desc = "Project layout with YouTube" })
+
+local current_theme_index = 1
+
+local themes = {
+    "onenord",
+    "nord",
+    "cyberdream",
+}
+
+local function set_theme(theme)
+    if theme == "onenord" then
+        require("onenord").setup({
+            borders = true,
+            fade_nc = false,
+        })
+    elseif theme == "nord" then
+        vim.g.nord_contrast = true
+        vim.g.nord_borders = true
+        vim.g.nord_italic = false
+        vim.g.nord_bold = true
+        require("nord").set()
+    elseif theme == "cyberdream" then
+        require("cyberdream").setup({
+            variant = "default",
+            transparent = false,
+        })
+        vim.cmd.colorscheme("cyberdream")
+    end
+
+    vim.notify("Theme: " .. theme)
+end
+
+local function next_theme()
+    current_theme_index = current_theme_index + 1
+
+    if current_theme_index > #themes then
+        current_theme_index = 1
+    end
+
+    set_theme(themes[current_theme_index])
+end
+
+set_theme("onenord")
+
+vim.keymap.set("n", "<leader>t1", function()
+    current_theme_index = 1
+    set_theme("onenord")
+end, { desc = "Theme OneNord" })
+
+vim.keymap.set("n", "<leader>t2", function()
+    current_theme_index = 2
+    set_theme("nord")
+end, { desc = "Theme Nord" })
+
+vim.keymap.set("n", "<leader>t3", function()
+    current_theme_index = 3
+    set_theme("cyberdream")
+end, { desc = "Theme Cyberdream" })
+
+vim.keymap.set("n", "<leader>tn", next_theme, { desc = "Next Theme "})
