@@ -46,6 +46,8 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/folke/snacks.nvim",
     "https://github.com/benomahony/youtube.nvim",
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/nvim-telescope/telescope.nvim",
 
     -- themes
     "https://github.com/rmehri01/onenord.nvim",
@@ -64,6 +66,7 @@ cmp.setup({
 local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 
 require("oil").setup()
+require("telescope").setup({})
 
 require("youtube").setup({
     keymap = false,
@@ -100,6 +103,7 @@ vim.lsp.config("clangd", {
     cmd = {
         "C:\\Program Files\\LLVM\\bin\\clangd.exe",
         "--background-index",
+        "--header-insertion=never"
     },
     filetypes = { "c", "cpp", "objc", "objcpp" },
     root_markers = {
@@ -235,7 +239,15 @@ local function set_theme(theme)
     elseif theme == "cyberdream" then
         require("cyberdream").setup({
             variant = "default",
-            transparent = false,
+            transparent = true,
+            terminal_colors = true,
+            saturation = 1,
+            italic_comments = true,
+            hide_fillchars = true,
+            borderless_pickers = true,
+            extensions = {
+                default = true,
+            },
         })
         vim.cmd.colorscheme("cyberdream")
     end
@@ -253,7 +265,7 @@ local function next_theme()
     set_theme(themes[current_theme_index])
 end
 
-set_theme("onenord")
+set_theme("cyberdream")
 
 vim.keymap.set("n", "<leader>t1", function()
     current_theme_index = 1
@@ -271,3 +283,11 @@ vim.keymap.set("n", "<leader>t3", function()
 end, { desc = "Theme Cyberdream" })
 
 vim.keymap.set("n", "<leader>tn", next_theme, { desc = "Next Theme "})
+
+
+local builtin = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find text" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find word under cursor" })
