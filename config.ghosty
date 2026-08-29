@@ -1,0 +1,7 @@
+theme = cyberpunk scarlet protocol
+background-opacity = 0.72
+background-blur-radius = 35
+
+font-size = 14
+window-padding-x = 8
+window-padding-y = 8

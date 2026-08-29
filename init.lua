@@ -97,7 +97,7 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("clangd", {
-    cmd = { "clangd", "--background-index", "--header-insertion=never" },
+    cmd = { "clangd", "--background-index", "--header-insertion=iwyu", "--header-insertion-decorators" },
     filetypes = { "c", "cpp", "objc", "objcpp" },
     root_markers = {
         "compile_commands.json",
